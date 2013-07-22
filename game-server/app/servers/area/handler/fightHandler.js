@@ -22,10 +22,11 @@ handler.attack = function(msg, session, next) {
 	if(!target || !player || (player.target === target.entityId) || (player.entityId === target.entityId) || target.died){
 		next();
 		return;
-	}
+	} //数据校验
 
-	session.area.timer.abortAction('move', player.entityId);
-	player.target = target.entityId;
+	session.area.timer.abortAction('move', player.entityId); //停止移动
+	player.target = target.entityId; //锁定攻击目标
+
 
 	next();
 };

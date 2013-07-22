@@ -10,7 +10,7 @@ var Timer = function(opts){
 module.exports = Timer;
 
 Timer.prototype.run = function () {
-  this.interval = setInterval(this.tick.bind(this), this.interval);
+  this.interval = setInterval(this.tick.bind(this), this.interval); //定时执行 tick
 };
 
 Timer.prototype.close = function () {
@@ -22,7 +22,7 @@ Timer.prototype.tick = function() {
 
   //Update mob zones
   for(var key in area.zones){
-    area.zones[key].update();
+    area.zones[key].update();  //遍历 所有zones的更新
   }
 
   //Update all the items
@@ -37,11 +37,11 @@ Timer.prototype.tick = function() {
   }
 
   //run all the action
-  area.actionManager.update();
+  area.actionManager.update(); //动作更新
 
-  area.aiManager.update();
+  area.aiManager.update();  //ai 更新，检查ai反应与动作
 
-  area.patrolManager.update();
+  area.patrolManager.update(); //patrol更新
 };
 
 /**

@@ -29,7 +29,7 @@ exp.addEvent = function(entity){
  * Add save event for player
  * @param {Object} player The player to add save event for.
  */
-function addSaveEvent(player) {
+function addSaveEvent(player) {  //通过同步工具，回写相关信息到数据库
 	var app = pomelo.app;
 	player.on('save', function() {
 		app.get('sync').exec('playerSync.updatePlayer', player.id, player.strip());

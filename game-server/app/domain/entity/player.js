@@ -242,7 +242,7 @@ Player.prototype.upgradeSkill = function(skillId) {
  * @return {Object}
  * @api public
  */
-Player.prototype.pickItem = function(entityId) {
+Player.prototype.pickItem = function(entityId) { //捡物品
   var item = this.area.getEntity(entityId);
 
   var result = {player : this, item : item};

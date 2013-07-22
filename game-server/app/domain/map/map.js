@@ -9,6 +9,7 @@ var fs = require('fs');
  * The data structure for map in the area
  */
 var Map = function(opts) {
+	
 	this.mapPath = process.cwd() + opts.path;
 	this.map = null;
 	this.weightMap = null;

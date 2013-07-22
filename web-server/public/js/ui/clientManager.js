@@ -331,7 +331,7 @@ __resources__["/clientManager.js"] = {
           sprite.translateTo(paths.path[0].x, paths.path[0].y);
         }
       });
-      sprite.movePath(paths.path);
+      sprite. (paths.path);
     }
 
     function launchAi(args) {
@@ -344,28 +344,28 @@ __resources__["/clientManager.js"] = {
       var skillId = pomelo.player.curSkill;
       var area = app.getCurArea();
       var entity = area.getEntity(targetId);
-      if (entity.type === EntityType.PLAYER || entity.type === EntityType.MOB) {
+      if (entity.type === EntityType.PLAYER || entity.type === EntityType.MOB) {  //被攻击的对象类型判断
         if (entity.died) {
           return;
         }
-        if (entity.type === EntityType.PLAYER) {
+        if (entity.type === EntityType.PLAYER) {  //如果是玩家，弹出选项，组队或者交易等
           var curPlayer = app.getCurPlayer();
           pomelo.emit('onPlayerDialog', {targetId: targetId, targetPlayerId: entity.id,
             targetTeamId: entity.teamId, targetIsCaptain: entity.isCaptain,
             myTeamId: curPlayer.teamId, myIsCaptain: curPlayer.isCaptain});
         } else if (entity.type === EntityType.MOB) {
-          pomelo.notify('area.fightHandler.attack',{targetId: targetId});
+          pomelo.notify('area.fightHandler.attack',{targetId: targetId}); //通知服务器处理攻击事件，不要求回调
         }
-      } else if (entity.type === EntityType.NPC) {
+      } else if (entity.type === EntityType.NPC) {  //如果是NPC是对话模式
         pomelo.notify('area.playerHandler.npcTalk',{areaId :areaId, playerId: playerId, targetId: targetId});
-      } else if (entity.type === EntityType.ITEM || entity.type === EntityType.EQUIPMENT) {
+      } else if (entity.type === EntityType.ITEM || entity.type === EntityType.EQUIPMENT) { //检查一下捡东西相关的
         var curPlayer = app.getCurPlayer();
         var bag = curPlayer.bag;
         if (bag.isFull()) {
           curPlayer.getSprite().hintOfBag();
           return;
         }
-        pomelo.notify('area.playerHandler.pickItem',{areaId :areaId, playerId: playerId, targetId: targetId});
+        pomelo.notify('area.playerHandler.pickItem',{areaId :areaId, playerId: playerId, targetId: targetId}); //捡东西
       }
     }
 

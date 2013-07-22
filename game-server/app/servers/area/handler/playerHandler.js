@@ -175,16 +175,16 @@ handler.move = function(msg, session, next) {
 
 	var ignoreList = {};
 	ignoreList[player.userId] = true;
-  if (timer.addAction(action)) {
+  if (timer.addAction(action)) { //添加行为
 			player.isMoving = true;
 			//Update state
 			if(player.x !== path[0].x || player.y !== path[0].y){
-					timer.updateObject({id:player.entityId, type:consts.EntityType.PLAYER}, {x : player.x, y : player.y}, path[0]);
-          timer.updateWatcher({id:player.entityId, type:consts.EntityType.PLAYER}, {x : player.x, y : player.y}, path[0], player.range, player.range);
+					timer.updateObject({id:player.entityId, type:consts.EntityType.PLAYER}, {x : player.x, y : player.y}, path[0]); //更新AOI状态
+          timer.updateWatcher({id:player.entityId, type:consts.EntityType.PLAYER}, {x : player.x, y : player.y}, path[0], player.range, player.range); //更新AOI观察者状态
 			}
 
       messageService.pushMessageByAOI(area, {
-      route: 'onMove',
+      route: 'onMove',  //响应AOI
       entityId: player.entityId,
       path: path,
       speed: speed

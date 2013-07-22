@@ -177,13 +177,13 @@ Handler.prototype.inviteJoinTeam = function(msg, session, next) {
 
   // send invitation to the invitee
   var args = {captainId: captainId, teamId: msg.teamId};
-  this.app.rpc.manager.teamRemote.inviteJoinTeam(session, args, function(err, ret) {
+  this.app.rpc.manager.teamRemote.inviteJoinTeam(session, args, function(err, ret) { //rpc调用inviteJoinTeam逻辑是否符合邀请条件
     var result = ret.result;
     utils.myPrint("result = ", result);
     if(result === consts.TEAM.OK) {
       var captainInfo = captainObj.toJSON4Team();
       messageService.pushMessageToPlayer({uid : inviteeObj.userId, sid : inviteeObj.serverId},
-        'onInviteJoinTeam', captainInfo);
+        'onInviteJoinTeam', captainInfo); //通过onInviteJoinTeam事件发送到客户端
     }
   });
   next();
@@ -284,7 +284,7 @@ Handler.prototype.applyJoinTeam = function(msg, session, next) {
     return;
   }
 
-  if(applicantObj.isInTeam()) {
+  if(applicantObj.isInTeam()) { //判断是否在队伍中
     next();
     return;
   }

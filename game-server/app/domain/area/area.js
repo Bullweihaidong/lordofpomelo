@@ -37,9 +37,9 @@ var Instance = function(opts){
   //Init AOI
   this.aoi = aoiManager.getService(opts);
 
-  this.aiManager = ai.createManager({area:this});
-  this.patrolManager = patrol.createManager({area:this});
-  this.actionManager = new ActionManager();
+  this.aiManager = ai.createManager({area:this}); //ai 管理工厂方法
+  this.patrolManager = patrol.createManager({area:this}); //patrol 巡逻工厂方法
+  this.actionManager = new ActionManager(); //action 动作工厂方法
 
   this.timer = new Timer({
     area : this,
@@ -55,14 +55,14 @@ module.exports = Instance;
  * @api public
  */
 Instance.prototype.start = function() {
-  aoiEventManager.addEvent(this, this.aoi.aoi);
+  aoiEventManager.addEvent(this, this.aoi.aoi); //aoi监听事件
 
   //Init mob zones
-  this.initMobZones(this.map.getMobZones());
-  this.initNPCs(this);
+  this.initMobZones(this.map.getMobZones()); //初始化怪物空间
+  this.initNPCs(this); //初始化NPC
 
-  this.aiManager.start();
-  this.timer.run();
+  this.aiManager.start(); //AI管理服务启动
+  this.timer.run();   //地图计时器
 };
 
 Instance.prototype.close = function(){

@@ -27,7 +27,7 @@ var pro = Handler.prototype;
  * @return {Void}
  */
 pro.entry = function(msg, session, next) {
-	var token = msg.token, self = this;
+	var token = msg.token, self = this;  //验证token信息，生成session
 
 	if(!token) {
 		next(new Error('invalid entry request: empty token'), {code: Code.FAIL});
@@ -67,9 +67,9 @@ pro.entry = function(msg, session, next) {
 
 			player = players[0];
 
-			session.set('serverId', self.app.get('areaIdMap')[player.areaId]);
-			session.set('playername', player.name);
-			session.set('playerId', player.id);
+			session.set('serverId', self.app.get('areaIdMap')[player.areaId]); //登记session服务的area服务器
+			session.set('playername', player.name); //用户名
+			session.set('playerId', player.id);  //用户ID
 			session.on('closed', onUserLeave.bind(null, self.app));
 			session.pushAll(cb);
 		}, function(cb) {
