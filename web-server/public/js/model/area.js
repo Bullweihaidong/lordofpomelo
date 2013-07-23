@@ -83,7 +83,7 @@ __resources__["/area.js"] = {meta: {mimetype: "application/javascript"}, data: f
 
 	pro.run = function(){
 		setTimeout(function() {
-			new TimeSync();
+			new TimeSync(); //与服务器时间同步
 		}, 1000);
 		var time = Date.now();
 		var tickCount = 0, allCount = 0, frameRate = 0, startTime = time, time2 = time, avgFrame = 0;
