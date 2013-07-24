@@ -28,8 +28,8 @@ var attack = function(attacker, target, skill) {
 //			return {result: consts.AttackResult.MISS, damage: 0, mpUse: skill.skillData.mp};
 //	}
 
-	var damageValue = formula.calDamage(attacker, target, skill);
-	target.hit(attacker, damageValue);
+	var damageValue = formula.calDamage(attacker, target, skill); //对应技能的伤害计算
+	target.hit(attacker, damageValue); //造成伤害
 	attacker.reduceMp(skill.skillData.mp);
 	if (!!target.save) {
 		target.save();

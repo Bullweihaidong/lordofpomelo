@@ -464,8 +464,8 @@ __resources__["/gameMsgHandler.js"] = {meta: {mimetype: "application/javascript"
     pomelo.on('onAttack', function(data){
       var area = app.getCurArea();
       var skillId = data.skillId;
-      var attacker = area.getEntity(data.attacker);
-      var target = area.getEntity(data.target);
+      var attacker = area.getEntity(data.attacker); //重新获取实体
+      var target = area.getEntity(data.target); //更新选取目标
 
       if(!attacker || !target){
         console.log('attacker or target not exist ! attacker: ' + data.attacker + ', target : ' + data.target);
@@ -498,14 +498,14 @@ __resources__["/gameMsgHandler.js"] = {meta: {mimetype: "application/javascript"
         skillEffectParams: skillEffectParams,
         experience: data.exp
       };
-      if (result === AttackResult.SUCCESS) {
+      if (result === AttackResult.SUCCESS) { //根据不同的攻击场景返回 结果，根据结果初始化Ui
         successAction(params);
       } else if (result === AttackResult.KILLED) {
         killedAction(params);
       } else if (result === AttackResult.NOT_IN_RANGE) {
         targetSprite.stand({x1: attackerPos.x, x2:attackerPos.y, y1: targetPos.x, y2: targetPos.y});
       }
-      uiUpdate();
+      uiUpdate(); //更新图形显示
     });
 
     /**

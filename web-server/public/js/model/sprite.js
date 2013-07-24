@@ -506,8 +506,8 @@ __resources__["/sprite.js"] = {meta: {mimetype: "application/javascript"}, data:
 			return;
 		}
 
-		this.stopWholeAnimations();
-		this.clearPath();
+		this.stopWholeAnimations(); //停止所有手上的行动
+		this.clearPath(); //清楚上次生成的路线
 
 		this.curPath = path;
 		this.leftDistance = utils.totalDistance(path);
