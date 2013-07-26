@@ -8,6 +8,8 @@ var routeUtil = require('./app/util/routeUtil');
 var playerFilter = require('./app/servers/area/filter/playerFilter');
 var ChatService = require('./app/services/chatService');
 
+
+
 /**
  * Init app for client
  */
